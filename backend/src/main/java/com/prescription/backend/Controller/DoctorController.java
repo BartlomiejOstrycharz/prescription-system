@@ -18,7 +18,7 @@ public class DoctorController {
         this.doctorService = doctorService;
     }
 
-    @GetMapping("/doctors")
+    @GetMapping("/doctors") //localhost:8080/doctors
     public List<Doctor> getAllDoctors(){
         return doctorService.getAllDoctors();
     }

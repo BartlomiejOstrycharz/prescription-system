@@ -19,17 +19,23 @@ public class Patient {
 
     @Column(name = "first_name")
     String first_name;
+
     @Column(name = "last_name")
     String last_name;
+
     @Column(name = "date_of_birth")
     String date_of_birth;
+
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     Gender gender;
+
     @Column(name = "address")
     String address;
+
     @Column(name = "phone_number")
     String phone_number;
+
     @Column(name = "email")
     String email;
 }
