@@ -21,4 +21,10 @@ public class DoctorService {
         return doctorRepository.findAll();
     }
 
+    public boolean isValidDoctor(String email, String password) {
+
+        Doctor doctor = doctorRepository.findByEmailAndPassword(email, password);
+        return doctor != null;
+    }
+
 }

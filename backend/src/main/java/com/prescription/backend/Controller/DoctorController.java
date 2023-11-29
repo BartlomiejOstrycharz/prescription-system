@@ -3,8 +3,9 @@ package com.prescription.backend.Controller;
 import com.prescription.backend.Model.Doctor;
 import com.prescription.backend.Service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +23,17 @@ public class DoctorController {
     public List<Doctor> getAllDoctors(){
         return doctorService.getAllDoctors();
     }
-}
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody Doctor doctor){
+        String email = doctor.getEmail();
+        String password = doctor.getPassword();
+
+        if (doctorService.isValidDoctor(email, password)) {
+            return new ResponseEntity<>("Zalogowano pomyślnie", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Niepoprawne dane logowania", HttpStatus.UNAUTHORIZED);
+        }
+    }
+    }
 
