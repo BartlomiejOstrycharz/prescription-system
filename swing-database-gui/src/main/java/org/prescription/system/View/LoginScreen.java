@@ -54,7 +54,7 @@ public class LoginScreen extends JFrame{
                 HttpPost httpPost = new HttpPost("http://localhost:8080/login");
 
                 try{
-                    // Ustaw dane logowania w formie JSON
+                    // Dane logowania w formie JSON
                     String json = "{\"email\":\"" + email + "\", \"password\":\"" + password + "\"}";
                     StringEntity entity = new StringEntity(json);
                     httpPost.setEntity(entity);
@@ -62,13 +62,17 @@ public class LoginScreen extends JFrame{
                     httpPost.setHeader("Content-type", "application/json");
 
 
-                    // Wyślij zapytanie i odbierz odpowiedź
+                    // Sending request and receiving response
                     HttpResponse response = httpClient.execute(httpPost);
 
 
-                    // Sprawdź status odpowiedzi
+                    // Checking response
                     if(response.getStatusLine().getStatusCode() == 200){
                         JOptionPane.showMessageDialog(LoginScreen.this,"Zalogowano pomyslnie");
+
+                        dispose(); // Closing login screen
+                        TableScreen tableScreen = new TableScreen();
+                        tableScreen.setVisible(true);
                     } else{
                         JOptionPane.showMessageDialog(LoginScreen.this,"Niepoprawne dane logowania");
                     }
