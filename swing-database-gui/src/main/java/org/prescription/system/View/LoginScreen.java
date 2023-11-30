@@ -5,8 +5,14 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClients;
 
-public class LoginScreen extends JFrame {
+
+public class LoginScreen extends JFrame{
 
     private JTextField emailField;
     private JPasswordField passwordField;
@@ -40,9 +46,37 @@ public class LoginScreen extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Add your login logic here
-                // For simplicity, let's just display a message for now
-                JOptionPane.showMessageDialog(LoginScreen.this, "Login button clicked!");
+                String email = emailField.getText();
+                String password = new String(passwordField.getPassword());
+
+                // Tworzenie klienta HTTP
+                HttpClient httpClient = HttpClients.createDefault();
+                HttpPost httpPost = new HttpPost("http://localhost:8080/login");
+
+                try{
+                    // Ustaw dane logowania w formie JSON
+                    String json = "{\"email\":\"" + email + "\", \"password\":\"" + password + "\"}";
+                    StringEntity entity = new StringEntity(json);
+                    httpPost.setEntity(entity);
+                    httpPost.setHeader("Accept", "application/json");
+                    httpPost.setHeader("Content-type", "application/json");
+
+
+                    // Wyślij zapytanie i odbierz odpowiedź
+                    HttpResponse response = httpClient.execute(httpPost);
+
+
+                    // Sprawdź status odpowiedzi
+                    if(response.getStatusLine().getStatusCode() == 200){
+                        JOptionPane.showMessageDialog(LoginScreen.this,"Zalogowano pomyslnie");
+                    } else{
+                        JOptionPane.showMessageDialog(LoginScreen.this,"Niepoprawne dane logowania");
+                    }
+
+                }catch(Exception ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(LoginScreen.this, "Wystąpił błąd podczas komunikacji z serwerem.");
+                }
             }
         });
 
