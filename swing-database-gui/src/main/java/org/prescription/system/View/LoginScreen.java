@@ -10,6 +10,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
+import org.prescription.system.Service.LoginService;
 
 
 public class LoginScreen extends JFrame{
@@ -48,26 +49,10 @@ public class LoginScreen extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String email = emailField.getText();
                 String password = new String(passwordField.getPassword());
+                boolean loginSuccessful = LoginService.performLogin(email, password);
 
-                // Tworzenie klienta HTTP
-                HttpClient httpClient = HttpClients.createDefault();
-                HttpPost httpPost = new HttpPost("http://localhost:8080/login");
-
-                try{
-                    // Dane logowania w formie JSON
-                    String json = "{\"email\":\"" + email + "\", \"password\":\"" + password + "\"}";
-                    StringEntity entity = new StringEntity(json);
-                    httpPost.setEntity(entity);
-                    httpPost.setHeader("Accept", "application/json");
-                    httpPost.setHeader("Content-type", "application/json");
-
-
-                    // Sending request and receiving response
-                    HttpResponse response = httpClient.execute(httpPost);
-
-
-                    // Checking response
-                    if(response.getStatusLine().getStatusCode() == 200){
+                // Checking response
+                    if(loginSuccessful){
                         JOptionPane.showMessageDialog(LoginScreen.this,"Zalogowano pomyslnie");
 
                         dispose(); // Closing login screen
@@ -76,11 +61,6 @@ public class LoginScreen extends JFrame{
                     } else{
                         JOptionPane.showMessageDialog(LoginScreen.this,"Niepoprawne dane logowania");
                     }
-
-                }catch(Exception ex){
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(LoginScreen.this, "Wystąpił błąd podczas komunikacji z serwerem.");
-                }
             }
         });
 

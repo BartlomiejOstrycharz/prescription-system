@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39b4dbae-4471-4d69-aaa2-b093b509fba4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/prescription/system/View/TableScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/TableScreen$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/TableScreen$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/TableScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/prescription/system/Service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prescription/system/Service/LoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/prescription/system/View/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prescription/system/View/LoginScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/prescription/system/View/LoginScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/LoginScreen$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/prescription/system/View/LoginScreen$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/LoginScreen$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/prescription/system/View/LoginScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/LoginScreen.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
