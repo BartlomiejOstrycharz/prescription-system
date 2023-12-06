@@ -46,5 +46,8 @@ public class TableScreen extends JFrame {
         menuBar.add(helpMenu);
 
         setJMenuBar(menuBar);
+
+        PatientTable patientTable = new PatientTable();
+        add(patientTable, BorderLayout.CENTER);
     }
 }

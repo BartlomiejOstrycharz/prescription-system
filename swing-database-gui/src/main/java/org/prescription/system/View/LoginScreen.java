@@ -2,15 +2,13 @@ package org.prescription.system.View;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClients;
+
 import org.prescription.system.Service.LoginService;
+import org.prescription.system.Service.PatientService;
 
 
 public class LoginScreen extends JFrame{
