@@ -13,13 +13,27 @@ import { Router } from '@angular/router';
 export class InputButtonComponent {
   inputValue: string = '';
 
-  constructor(private apiService: ApiService, private router: Router) {
-
-  }
+  constructor(private apiService: ApiService, private router: Router) {}
 
   public clearInput() {
-    this.inputValue ='';
+    this.inputValue = '';
   }
 
+  public sendPrescriptionNumber() {
+    this.apiService.validatePrescriptionNumber(this.inputValue).subscribe(
+      (response) => {
+        if (response.status === 200) {
+          const path = `/prescription${this.inputValue}`;
+          this.router.navigate([path]);
+        } else {
+          alert('Prescription does not exist');
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
+    this.clearInput();
+  }
 }

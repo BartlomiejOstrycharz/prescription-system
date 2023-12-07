@@ -13,9 +13,9 @@ export class ApiService {
   public validatePrescriptionNumber(
     prescriptionNumber: string
   ): Observable<any> {
-    const url = `${this.apiURL}/validate`;
-    const data = { prescriptionNumber };
+    const url = `${this.apiURL}/validate-prescription`;
+    const number = { prescriptionNumber };
 
-    return this.httpClient.post(url, data);
+    return this.httpClient.post(url, number);
   }
 }

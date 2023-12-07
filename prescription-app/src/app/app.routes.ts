@@ -1,10 +1,13 @@
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InputButtonComponent } from './input-button/input-button.component';
+import { PrescriptionTableComponent } from './prescription-table/prescription-table.component';
 
 export const routes: Routes = [
-  { path: 'prescription', component: InputButtonComponent },
+  { path: 'prescription-table', component: PrescriptionTableComponent },
+  { path: 'validate', component: InputButtonComponent },
+  { path: '', redirectTo: '/validate', pathMatch: 'full' },
+
 ];
 
 @NgModule({
