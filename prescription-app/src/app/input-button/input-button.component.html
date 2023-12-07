@@ -1,0 +1,18 @@
+<div
+  class="container d-flex justify-content-center align-items-center flex-column"
+>
+  <label id="prescription-label" for="prescription"
+    >Enter prescription number to access</label
+  >
+  <input
+    id="prescription-number"
+    placeholder="Prescription number"
+    name="prescription"
+    [(ngModel)]="inputValue"
+  />
+  <div id="button-container">
+    <button id="submit-button" (click)="clearInput()">
+      Submit
+    </button>
+  </div>
+</div>
