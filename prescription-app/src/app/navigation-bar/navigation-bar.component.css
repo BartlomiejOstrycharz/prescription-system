@@ -5,5 +5,25 @@
 
 nav {
   background-color: var(--main-background-color);
-  height: 100%;
+}
+
+.exit-button {
+  background-color: transparent;
+  color: black;
+  letter-spacing: 2px;
+  border-radius: 5px;
+  border: solid 2px black;
+  font-weight: bold;
+  font-size: 30px;
+  width: 100px;
+  transition: 0.2s;
+}
+
+.exit-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.exit-button:active {
+  opacity: 0.7;
 }
