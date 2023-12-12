@@ -1,14 +1,22 @@
 package org.prescription.system.View;
 
+import org.prescription.system.Model.Patient;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.List;
 
 public class PatientTable extends JPanel {
     private JTable table;
-    public PatientTable(){
-        String[][] data = {{"1", "John", "Doe"}, {"2", "Jane", "Smith"}, {"3", "Bob", "Johnson"}}; // examples data
-        String[] columnNames = {"id", "First Name", "Last Name","Date of birth", "Gender", "Address", "Phone", "Email" };
+
+    public PatientTable(List<Patient> patients) {
+        String[] columnNames = {"id", "First Name", "Last Name", "Date of birth", "Gender", "Address", "Phone", "Email"};
+
+        // Convert the list of patients to a 2D array
+        Object[][] data = patients.stream()
+                .map(patient -> new Object[]{patient.getPatient_id(), patient.getFirst_name(), patient.getLast_name(), patient.getDate_of_birth(), patient.getGender(), patient.getAddress(), patient.getPhone_number(), patient.getEmail()})
+                .toArray(Object[][]::new);
 
         // Create a DefaultTableModel with non-editable cells
         DefaultTableModel tableModel = new DefaultTableModel(data, columnNames) {
