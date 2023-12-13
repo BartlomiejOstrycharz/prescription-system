@@ -59,10 +59,9 @@ public class TableScreen extends JFrame {
 
         setJMenuBar(menuBar);
 
-        // Fetch patient data from the backend using Apache HttpClient
+
         List<Patient> patients = fetchDataFromBackend();
 
-        // Update PatientTable with the retrieved data
         PatientTable patientTable = new PatientTable(patients);
         getContentPane().add(patientTable, BorderLayout.CENTER);
     }
