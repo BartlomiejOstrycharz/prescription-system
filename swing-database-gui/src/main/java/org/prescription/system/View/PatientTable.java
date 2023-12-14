@@ -9,14 +9,16 @@ import java.util.List;
 
 public class PatientTable extends JPanel {
     private JTable table;
+    private DefaultTableModel tableModel;
 
     public PatientTable(List<Patient> patients) {
         String[] columnNames = {"id", "First Name", "Last Name", "Date of birth", "Gender", "Address", "Phone", "Email"};
 
         Object[][] data = patients.stream()
-                .map(patient -> new Object[]{patient.getPatient_id(), patient.getFirst_name(), patient.getLast_name(), patient.getDate_of_birth(), patient.getGender(), patient.getAddress(), patient.getPhone_number(), patient.getEmail()})
+                .map(patient -> new Object[]{patient.getPatient_id(), patient.getFirstName(), patient.getLastName(), patient.getDateOfBirth(), patient.getGender(), patient.getAddress(), patient.getPhoneNumber(), patient.getEmail()})
                 .toArray(Object[][]::new);
-        DefaultTableModel tableModel = new DefaultTableModel(data, columnNames) {
+
+        tableModel = new DefaultTableModel(data, columnNames) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -30,5 +32,19 @@ public class PatientTable extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
         add(scrollPane, BorderLayout.CENTER);
+    }
+
+    public void updateTable(List<Patient> patients) {
+        // Remove all rows from the table
+        tableModel.setRowCount(0);
+
+        // Add new rows based on the updated data
+        for (Patient patient : patients) {
+            tableModel.addRow(new Object[]{
+                    patient.getPatient_id(), patient.getFirstName(), patient.getLastName(),
+                    patient.getDateOfBirth(), patient.getGender(), patient.getAddress(),
+                    patient.getPhoneNumber(), patient.getEmail()
+            });
+        }
     }
 }

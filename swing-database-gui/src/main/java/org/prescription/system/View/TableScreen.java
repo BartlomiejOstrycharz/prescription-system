@@ -52,9 +52,9 @@ public class TableScreen extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Perform search based on the content of the search panel
                 String searchTerm = searchPanel.getSearchTerm();
-                // List<Patient> searchResults = patientService.searchPatients(searchTerm);
-                // Update the table with the search results
-                // patientTable.updateTable(searchResults);
+                 List<Patient> searchResults = patientService.searchPatients(searchTerm);
+                 //Update the table with the search results
+                 patientTable.updateTable(searchResults);
             }
         });
 
