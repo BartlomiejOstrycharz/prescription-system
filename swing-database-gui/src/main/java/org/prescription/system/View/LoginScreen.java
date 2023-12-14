@@ -2,7 +2,6 @@ package org.prescription.system.View;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,10 +50,8 @@ public class LoginScreen extends JFrame{
 
                 // Checking response
                     if(loginSuccessful){
-                        JOptionPane.showMessageDialog(LoginScreen.this,"Zalogowano pomyslnie");
-
                         dispose(); // Closing login screen
-                        TableScreen tableScreen = new TableScreen();
+                        TableScreen tableScreen = new TableScreen(new PatientService());
                         tableScreen.setVisible(true);
                     } else{
                         JOptionPane.showMessageDialog(LoginScreen.this,"Niepoprawne dane logowania");

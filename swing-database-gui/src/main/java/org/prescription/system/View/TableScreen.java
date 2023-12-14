@@ -1,26 +1,22 @@
 package org.prescription.system.View;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClients;
 import org.prescription.system.Model.Patient;
-import org.prescription.system.View.PatientTable;
+import org.prescription.system.Service.PatientService;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Collections;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class TableScreen extends JFrame {
 
-    public TableScreen() {
-        setSize(700, 600);
+    private final PatientTable patientTable;
+    private final SearchPanel searchPanel;
+
+    public TableScreen(PatientService patientService) {
+        setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -28,63 +24,53 @@ public class TableScreen extends JFrame {
         JMenu fileMenu = new JMenu("File");
         JMenu helpMenu = new JMenu("Help");
         JMenuItem exitItem = new JMenuItem("Exit");
+        exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
+        exitItem.addActionListener(e -> dispose());
         JMenuItem aboutItem = new JMenuItem("About");
 
-        exitItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        aboutItem.addActionListener(e -> {
+            JDialog dialog = new JDialog(this, "About", Dialog.ModalityType.DOCUMENT_MODAL);
+            dialog.setSize(200, 200);
+            dialog.setLocationRelativeTo(null);
 
-        aboutItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JDialog dialog = new JDialog(TableScreen.this, "About", Dialog.ModalityType.DOCUMENT_MODAL);
-                dialog.setSize(200, 200);
-                dialog.setLocationRelativeTo(null);
+            JLabel label = new JLabel("Info about app", SwingConstants.CENTER);
 
-                JLabel label = new JLabel("Info about app", SwingConstants.CENTER);
+            dialog.add(label);
 
-                dialog.add(label);
-
-                dialog.setVisible(true);
-            }
+            dialog.setVisible(true);
         });
 
         fileMenu.add(exitItem);
         menuBar.add(fileMenu);
         helpMenu.add(aboutItem);
         menuBar.add(helpMenu);
-
         setJMenuBar(menuBar);
 
+        // Create search panel
+        searchPanel = new SearchPanel(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Perform search based on the content of the search panel
+                String searchTerm = searchPanel.getSearchTerm();
+                // List<Patient> searchResults = patientService.searchPatients(searchTerm);
+                // Update the table with the search results
+                // patientTable.updateTable(searchResults);
+            }
+        });
 
-        List<Patient> patients = fetchDataFromBackend();
+        // Create a panel for the search bar and add it to the top of the frame
+        JPanel searchBarPanel = new JPanel(new BorderLayout());
+        searchBarPanel.add(searchPanel, BorderLayout.CENTER);
+        searchBarPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        PatientTable patientTable = new PatientTable(patients);
-        getContentPane().add(patientTable, BorderLayout.CENTER);
-    }
+        // Fetch initial data from the backend
+        List<Patient> patients = patientService.fetchDataFromBackend();
 
-    private List<Patient> fetchDataFromBackend() {
-        // Make HTTP request to the backend to fetch patient data
-        // Use Apache HttpClient to make the request
-        // Example assumes the backend URL is "http://localhost:8080/patients"
-        try {
-            HttpClient client = HttpClients.createDefault();
-            HttpGet request = new HttpGet("http://localhost:8080/patients");
+        // Create the patient table
+        patientTable = new PatientTable(patients);
 
-            // Execute the request and obtain the response
-            HttpResponse response = client.execute(request);
-
-            // Parse the JSON response into a list of Patient objects
-            ObjectMapper objectMapper = new ObjectMapper();
-            List<Patient> patients = objectMapper.readValue(response.getEntity().getContent(), new TypeReference<List<Patient>>() {});
-
-            return patients;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return Collections.emptyList();
-        }
+        // Add the search bar panel and patient table to the main content pane
+        getContentPane().add(searchBarPanel, BorderLayout.NORTH);
+        getContentPane().add(new JScrollPane(patientTable), BorderLayout.CENTER);
     }
 }
