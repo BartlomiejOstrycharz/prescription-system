@@ -1,6 +1,5 @@
 package com.prescription.backend.Model;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,24 +17,24 @@ public class Patient {
     private Long patient_id;
 
     @Column(name = "first_name")
-    String first_name;
+    private String firstName;
 
     @Column(name = "last_name")
-    String last_name;
+    private String lastName;
 
     @Column(name = "date_of_birth")
-    String date_of_birth;
+    private String dateOfBirth;
 
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
-    Gender gender;
+    private Gender gender;
 
     @Column(name = "address")
-    String address;
+    private String address;
 
     @Column(name = "phone_number")
-    String phone_number;
+    private String phoneNumber;
 
     @Column(name = "email")
-    String email;
+    private String email;
 }

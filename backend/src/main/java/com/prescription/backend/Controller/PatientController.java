@@ -5,6 +5,7 @@ import com.prescription.backend.Service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -22,5 +23,10 @@ public class PatientController {
     @GetMapping("/patients") //http://localhost:8080/patients
     public List<Patient> getAllPatients() {
         return  patientService.getAllPatients();
+    }
+
+    @GetMapping("/search")
+    public List<Patient> searchPatients(@RequestParam String searchTerm) {
+        return patientService.searchPatients(searchTerm);
     }
 }

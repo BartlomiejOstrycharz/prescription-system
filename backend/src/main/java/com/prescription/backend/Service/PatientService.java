@@ -20,4 +20,9 @@ public class PatientService {
     public List<Patient> getAllPatients() {
         return patientRepository.findAll();
     }
+
+    public List<Patient> searchPatients(String searchTerm) {
+        return patientRepository.findByFirstNameContainingOrLastNameContainingOrDateOfBirthContainingOrAddressContainingOrPhoneNumberContainingOrEmailContaining(
+                searchTerm, searchTerm, searchTerm, searchTerm, searchTerm, searchTerm);
+    }
 }
