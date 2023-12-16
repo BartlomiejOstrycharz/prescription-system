@@ -3,10 +3,8 @@ package com.prescription.backend.Controller;
 import com.prescription.backend.Model.Patient;
 import com.prescription.backend.Service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +26,10 @@ public class PatientController {
     @GetMapping("/search")
     public List<Patient> searchPatients(@RequestParam String searchTerm) {
         return patientService.searchPatients(searchTerm);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePatient(@PathVariable Long patient_id) {
+        patientService.deletePatient(patient_id);
+        return ResponseEntity.ok("Patient deleted successfully");
     }
 }

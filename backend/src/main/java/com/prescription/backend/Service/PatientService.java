@@ -25,4 +25,7 @@ public class PatientService {
         return patientRepository.findByFirstNameContainingOrLastNameContainingOrDateOfBirthContainingOrAddressContainingOrPhoneNumberContainingOrEmailContaining(
                 searchTerm, searchTerm, searchTerm, searchTerm, searchTerm, searchTerm);
     }
+    public void deletePatient(Long patient_id) {
+        patientRepository.deleteById(patient_id);
+    }
 }
