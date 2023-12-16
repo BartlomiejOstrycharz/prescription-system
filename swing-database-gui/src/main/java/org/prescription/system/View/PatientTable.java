@@ -32,6 +32,8 @@ public class PatientTable extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
         add(scrollPane, BorderLayout.CENTER);
+
+        table.setAutoCreateRowSorter(true); //Turn on automatic sorting
     }
 
     public void updateTable(List<Patient> patients) {
