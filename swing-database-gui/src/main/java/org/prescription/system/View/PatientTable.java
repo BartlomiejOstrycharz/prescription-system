@@ -33,7 +33,7 @@ public class PatientTable extends JPanel {
 
         add(scrollPane, BorderLayout.CENTER);
 
-        table.setAutoCreateRowSorter(true); //Turn on automatic sorting
+        table.setAutoCreateRowSorter(true); // Turn on automatic sorting
     }
 
     public void updateTable(List<Patient> patients) {
@@ -43,10 +43,25 @@ public class PatientTable extends JPanel {
         // Add new rows based on the updated data
         for (Patient patient : patients) {
             tableModel.addRow(new Object[]{
-                    patient.getPatient_id(), patient.getFirstName(), patient.getLastName(),
+                    patient.getFirstName(), patient.getLastName(),
                     patient.getDateOfBirth(), patient.getGender(), patient.getAddress(),
                     patient.getPhoneNumber(), patient.getEmail()
             });
         }
+    }
+
+    // Add this method to get the JTable
+    public JTable getTable() {
+        return table;
+    }
+
+    // Add this method to get the selected row
+    public int getSelectedRow() {
+        return table.getSelectedRow();
+    }
+
+    // Add this method to unselect the patient
+    public void clearSelection() {
+        table.clearSelection();
     }
 }

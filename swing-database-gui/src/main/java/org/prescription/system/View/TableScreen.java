@@ -25,13 +25,14 @@ public class TableScreen extends JFrame {
         JMenu helpMenu = new JMenu("Help");
         JMenu editMenu = new JMenu("Edit");
         JMenuItem exitItem = new JMenuItem("Exit");
-        JMenuItem selectedItem = new JMenuItem("Selected patient");
+        JMenuItem deletePatient = new JMenuItem("Delete selected patient");
+        JMenuItem unselectItem = new JMenuItem("Unselect Patient");
         JMenuItem addDoctor = new JMenuItem("Add Doctor");
         exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
         exitItem.addActionListener(e -> dispose());
         JMenuItem aboutItem = new JMenuItem("About");
         aboutItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
-        aboutItem.addActionListener(e ->{
+        aboutItem.addActionListener(e -> {
             JDialog dialog = new JDialog(this, "About", Dialog.ModalityType.DOCUMENT_MODAL);
             dialog.setLayout(new GridLayout(3, 1));
             dialog.setSize(250, 250);
@@ -45,7 +46,6 @@ public class TableScreen extends JFrame {
             dialog.add(author_number_one);
             dialog.add(author_number_two);
             dialog.setVisible(true);
-
         });
 
         fileMenu.add(exitItem);
@@ -54,9 +54,10 @@ public class TableScreen extends JFrame {
         menuBar.add(helpMenu);
         setJMenuBar(menuBar);
         menuBar.add(editMenu);
-        editMenu.add(selectedItem);
+        editMenu.add(deletePatient);
+        editMenu.add(unselectItem);
         editMenu.add(addDoctor);
-        addDoctor.setEnabled(false); //wyszarzenie opcji z dodanie doctora
+        addDoctor.setEnabled(false);
 
         // Create search panel
         searchPanel = new SearchPanel(new ActionListener() {
@@ -64,9 +65,12 @@ public class TableScreen extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Perform search based on the content of the search panel
                 String searchTerm = searchPanel.getSearchTerm();
-                 List<Patient> searchResults = patientService.searchPatients(searchTerm);
-                 //Update the table with the search results
-                 patientTable.updateTable(searchResults);
+                List<Patient> searchResults = patientService.searchPatients(searchTerm);
+                // Update the table with the search results
+                patientTable.updateTable(searchResults);
+
+                // Unselect the patient when performing a new search
+                patientTable.clearSelection();
             }
         });
 
@@ -99,5 +103,38 @@ public class TableScreen extends JFrame {
         timer.start();
         footerPanel.updateDateTime(); // Initial update
 
+        // ActionListener for Delete selected patient
+        deletePatient.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = patientTable.getSelectedRow();
+                // Handle deletion logic based on the selected row
+                // You can use selectedRow to identify the patient to delete
+                // For now, let's just print the selected row index
+                System.out.println("Selected row index: " + selectedRow);
+            }
+        });
+
+        // ActionListener for Unselect Patient
+        unselectItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the unselectPatient method in PatientTable
+                patientTable.clearSelection();
+            }
+        });
+
+        // Disable the menu items initially
+        deletePatient.setEnabled(false);
+        unselectItem.setEnabled(false);
+
+        // Add a ListSelectionListener to enable/disable the menu items based on selection
+        patientTable.getTable().getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                int selectedRow = patientTable.getSelectedRow();
+                deletePatient.setEnabled(selectedRow != -1);
+                unselectItem.setEnabled(selectedRow != -1);
+            }
+        });
     }
 }

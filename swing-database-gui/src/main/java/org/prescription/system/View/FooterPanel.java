@@ -18,7 +18,7 @@ public class FooterPanel extends JPanel {
     }
     //Metoda aktualizująca etykietę z aktualną datą i godziną.  Wywoływana w określonych odstępach czasowych przez Timer.
     public void updateDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy | HH:mm:ss");
         String formattedDateTime = dateFormat.format(new Date());
         dateTimeLabel.setText("Aktualna data i godzina: " + formattedDateTime);
     }

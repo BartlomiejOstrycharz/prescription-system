@@ -46,7 +46,10 @@ public class LoginScreen extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String email = emailField.getText();
                 String password = new String(passwordField.getPassword());
-                boolean loginSuccessful = LoginService.performLogin(email, password);
+
+                String test_email = "john.doe@example.com";
+                String test_password = "password123";
+                boolean loginSuccessful = LoginService.performLogin(test_email, test_password);
 
                 // Checking response
                     if(loginSuccessful){

@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39b4dbae-4471-4d69-aaa2-b093b509fba4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/prescription/system/View/FooterPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prescription/system/View/FooterPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/prescription/system/View/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prescription/system/View/LoginScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/prescription/system/View/PatientTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prescription/system/View/PatientTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/prescription/system/View/TableScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prescription/system/View/TableScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/prescription/system/View/FooterPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/FooterPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/prescription/system/View/LoginScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/LoginScreen$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/prescription/system/View/LoginScreen$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/LoginScreen$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/prescription/system/View/LoginScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/LoginScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/prescription/system/View/PatientTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/PatientTable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/prescription/system/View/TableScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/TableScreen$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/prescription/system/View/TableScreen$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/TableScreen$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/prescription/system/View/TableScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/prescription/system/View/TableScreen.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,23 +47,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;swing-gui&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/admin/Desktop/swing/prescription-system/swing-database-gui&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "swing-gui",
+    "last_opened_file_path": "D:/studia/32ISM/projektowanie-aplikacji-biznesowych/repo/prescription-system/swing-database-gui",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.org.prescription.system.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.prescription.Main" />
