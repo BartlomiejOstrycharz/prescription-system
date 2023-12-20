@@ -12,10 +12,10 @@ public class PatientTable extends JPanel {
     private DefaultTableModel tableModel;
 
     public PatientTable(List<Patient> patients) {
-        String[] columnNames = {"id", "First Name", "Last Name", "Date of birth", "Gender", "Address", "Phone", "Email"};
+        String[] columnNames = {"First Name", "Last Name", "Date of birth", "Gender", "Address", "Phone", "Email"};
 
         Object[][] data = patients.stream()
-                .map(patient -> new Object[]{patient.getPatient_id(), patient.getFirstName(), patient.getLastName(), patient.getDateOfBirth(), patient.getGender(), patient.getAddress(), patient.getPhoneNumber(), patient.getEmail()})
+                .map(patient -> new Object[]{patient.getFirstName(), patient.getLastName(), patient.getDateOfBirth(), patient.getGender(), patient.getAddress(), patient.getPhoneNumber(), patient.getEmail()})
                 .toArray(Object[][]::new);
 
         tableModel = new DefaultTableModel(data, columnNames) {

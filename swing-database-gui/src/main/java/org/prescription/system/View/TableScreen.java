@@ -72,5 +72,20 @@ public class TableScreen extends JFrame {
         // Add the search bar panel and patient table to the main content pane
         getContentPane().add(searchBarPanel, BorderLayout.NORTH);
         getContentPane().add(new JScrollPane(patientTable), BorderLayout.CENTER);
+
+        // Create and add the footer panel
+        FooterPanel footerPanel = new FooterPanel();
+        getContentPane().add(footerPanel, BorderLayout.SOUTH);
+
+        // Set up a timer to update the date and time every second
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                footerPanel.updateDateTime();
+            }
+        });
+        timer.start();
+        footerPanel.updateDateTime(); // Initial update
+
     }
 }
