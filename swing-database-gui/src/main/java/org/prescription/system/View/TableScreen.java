@@ -1,4 +1,5 @@
 package org.prescription.system.View;
+
 import org.prescription.system.Service.DeletePatientService;
 import org.prescription.system.Model.Patient;
 import org.prescription.system.Service.PatientService;
@@ -80,7 +81,7 @@ public class TableScreen extends JFrame {
         searchBarPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // Fetch initial data from the backend
-        List<Patient> patients = patientService.fetchDataFromBackend();
+        List<Patient> patients = patientService.fetchPatientDataFromBackend();
 
         // Create the patient table
         patientTable = new PatientTable(patients);
@@ -109,8 +110,6 @@ public class TableScreen extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int selectedRow = patientTable.getSelectedRow();
                 if (selectedRow != -1) {
-
-
                     try {
                         Long patientId = (Long) patientTable.getTable().getValueAt(selectedRow, 0);
 
@@ -118,7 +117,7 @@ public class TableScreen extends JFrame {
                         DeletePatientService.deletePatient(patientId);
 
                         // Fetch updated data from the backend
-                        List<Patient> updatedPatients = patientService.fetchDataFromBackend();
+                        List<Patient> updatedPatients = patientService.fetchPatientDataFromBackend();
 
                         // Update the table with the latest data
                         patientTable.updateTable(updatedPatients);
@@ -129,8 +128,8 @@ public class TableScreen extends JFrame {
                         // Handle the case where patientIdString is not a valid Long
                         exception.printStackTrace();
                     }
-                 }
                 }
+            }
         });
 
         // ActionListener for Unselect Patient
@@ -161,8 +160,6 @@ public class TableScreen extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int selectedRow = patientTable.getSelectedRow();
                 if (selectedRow != -1) {
-
-
                     try {
                         Long patientId = (Long) patientTable.getTable().getValueAt(selectedRow, 0);
 
@@ -170,7 +167,7 @@ public class TableScreen extends JFrame {
                         DeletePatientService.deletePatient(patientId);
 
                         // Fetch updated data from the backend
-                        List<Patient> updatedPatients = patientService.fetchDataFromBackend();
+                        List<Patient> updatedPatients = patientService.fetchPatientDataFromBackend();
 
                         // Update the table with the latest data
                         patientTable.updateTable(updatedPatients);
@@ -182,8 +179,6 @@ public class TableScreen extends JFrame {
                         exception.printStackTrace();
                     }
                 }
-
-
             }
         });
 

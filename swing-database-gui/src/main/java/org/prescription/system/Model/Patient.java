@@ -1,5 +1,4 @@
 package org.prescription.system.Model;
-
 public class Patient {
     private Long patient_id;
     private String firstName;
@@ -10,6 +9,7 @@ public class Patient {
     private String phoneNumber;
     private String email;
 
+    // Getter and Setter for patient_id
     public Long getPatient_id() {
         return patient_id;
     }
@@ -80,5 +80,4 @@ public class Patient {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }

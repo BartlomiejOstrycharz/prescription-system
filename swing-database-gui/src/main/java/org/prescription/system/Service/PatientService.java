@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class PatientService {
 
-    public List<Patient> fetchDataFromBackend() {
+    public List<Patient> fetchPatientDataFromBackend() {
         try {
             HttpClient client = HttpClients.createDefault();
             HttpGet request = new HttpGet("http://localhost:8080/patients");
@@ -23,17 +23,20 @@ public class PatientService {
             HttpResponse response = client.execute(request);
 
             ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.readValue(response.getEntity().getContent(), new TypeReference<List<Patient>>() {});
+            List<Patient> patients = objectMapper.readValue(response.getEntity().getContent(), new TypeReference<List<Patient>>() {});
+
+
+            return patients;
         } catch (IOException e) {
             e.printStackTrace();
             return Collections.emptyList();
         }
     }
 
-
     private boolean patientMatchesSearch(Patient patient, String searchTerm) {
         // Replace this with your actual search logic
         // For simplicity, searching across all patient attributes
+        Long patientId = patient.getPatient_id();
         String firstName = patient.getFirstName();
         String lastName = patient.getLastName();
         String dateOfBirth = patient.getDateOfBirth();
@@ -42,16 +45,15 @@ public class PatientService {
         String phone = patient.getPhoneNumber();
         String email = patient.getEmail();
 
-        String patientInfo = firstName + " " + lastName + " " + dateOfBirth + " " + gender + " " + address + " " + phone + " " + email;
+        String patientInfo =patientId + " " + firstName + " " + lastName + " " + dateOfBirth + " " + gender + " " + address + " " + phone + " " + email;
 
         return patientInfo.toLowerCase().contains(searchTerm.toLowerCase());
     }
 
-
     public List<Patient> searchPatients(String searchTerm) {
         // Replace this with your actual search logic
         // For simplicity, assuming you have a method to fetch all patients
-        List<Patient> allPatients = fetchDataFromBackend();
+        List<Patient> allPatients = fetchPatientDataFromBackend();
 
         // Filter patients based on the search term
         List<Patient> searchResults = allPatients.stream()

@@ -26,7 +26,7 @@ public class PatientTable extends JPanel {
 
         Object[][] data = patients.stream()
                 .map(patient -> new Object[]{
-                        patient.getPatient_id(), // Keep patient_id as Long
+                        patient.getPatient_id(),
                         patient.getFirstName(), patient.getLastName(), patient.getDateOfBirth(), patient.getGender(),
                         patient.getAddress(), patient.getPhoneNumber(), patient.getEmail()})
                 .toArray(Object[][]::new);
