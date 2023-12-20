@@ -27,9 +27,10 @@ public class PatientController {
     public List<Patient> searchPatients(@RequestParam String searchTerm) {
         return patientService.searchPatients(searchTerm);
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePatient(@PathVariable Long patient_id) {
-        patientService.deletePatient(patient_id);
+
+    @DeleteMapping("/patients/{id}")
+    public ResponseEntity<String> deletePatient(@PathVariable Long id) {
+        patientService.deletePatient(id);
         return ResponseEntity.ok("Patient deleted successfully");
     }
 }
