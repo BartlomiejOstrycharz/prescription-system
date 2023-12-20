@@ -1,6 +1,5 @@
-// TableScreen.java
 package org.prescription.system.View;
-
+import org.prescription.system.Service.DeletePatientService;
 import org.prescription.system.Model.Patient;
 import org.prescription.system.Service.PatientService;
 
@@ -109,11 +108,29 @@ public class TableScreen extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selectedRow = patientTable.getSelectedRow();
-                // Handle deletion logic based on the selected row
-                // You can use selectedRow to identify the patient to delete
-                // For now, let's just print the selected row index
-                System.out.println("Selected row index: " + selectedRow);
-            }
+                if (selectedRow != -1) {
+
+
+                    try {
+                        Long patientId = (Long) patientTable.getTable().getValueAt(selectedRow, 0);
+
+                        // Use DeletePatientService to send HTTP DELETE request
+                        DeletePatientService.deletePatient(patientId);
+
+                        // Fetch updated data from the backend
+                        List<Patient> updatedPatients = patientService.fetchDataFromBackend();
+
+                        // Update the table with the latest data
+                        patientTable.updateTable(updatedPatients);
+
+                        // Clear the selection
+                        patientTable.clearSelection();
+                    } catch (NumberFormatException exception) {
+                        // Handle the case where patientIdString is not a valid Long
+                        exception.printStackTrace();
+                    }
+                 }
+                }
         });
 
         // ActionListener for Unselect Patient
@@ -143,10 +160,30 @@ public class TableScreen extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selectedRow = patientTable.getSelectedRow();
-                // Handle deletion logic based on the selected row
-                // You can use selectedRow to identify the patient to delete
-                // For now, let's just print the selected row index
-                System.out.println("Selected row index (from popup): " + selectedRow);
+                if (selectedRow != -1) {
+
+
+                    try {
+                        Long patientId = (Long) patientTable.getTable().getValueAt(selectedRow, 0);
+
+                        // Use DeletePatientService to send HTTP DELETE request
+                        DeletePatientService.deletePatient(patientId);
+
+                        // Fetch updated data from the backend
+                        List<Patient> updatedPatients = patientService.fetchDataFromBackend();
+
+                        // Update the table with the latest data
+                        patientTable.updateTable(updatedPatients);
+
+                        // Clear the selection
+                        patientTable.clearSelection();
+                    } catch (NumberFormatException exception) {
+                        // Handle the case where patientIdString is not a valid Long
+                        exception.printStackTrace();
+                    }
+                }
+
+
             }
         });
 
