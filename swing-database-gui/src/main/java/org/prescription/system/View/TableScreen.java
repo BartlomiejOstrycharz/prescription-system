@@ -1,3 +1,4 @@
+// TableScreen.java
 package org.prescription.system.View;
 
 import org.prescription.system.Model.Patient;
@@ -134,6 +135,27 @@ public class TableScreen extends JFrame {
                 int selectedRow = patientTable.getSelectedRow();
                 deletePatient.setEnabled(selectedRow != -1);
                 unselectItem.setEnabled(selectedRow != -1);
+            }
+        });
+
+        // Add a listener for the delete menu item in PatientTable
+        patientTable.addDeleteMenuItemListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = patientTable.getSelectedRow();
+                // Handle deletion logic based on the selected row
+                // You can use selectedRow to identify the patient to delete
+                // For now, let's just print the selected row index
+                System.out.println("Selected row index (from popup): " + selectedRow);
+            }
+        });
+
+        // Add a listener for the unselect menu item in PatientTable
+        patientTable.addUnselectMenuItemListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Clear the selection when the unselect menu item is clicked
+                patientTable.clearSelection();
             }
         });
     }

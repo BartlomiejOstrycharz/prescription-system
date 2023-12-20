@@ -1,3 +1,4 @@
+// PatientTable.java
 package org.prescription.system.View;
 
 import org.prescription.system.Model.Patient;
@@ -5,11 +6,20 @@ import org.prescription.system.Model.Patient;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class PatientTable extends JPanel {
     private JTable table;
     private DefaultTableModel tableModel;
+
+    // Add popup menu items
+    private JPopupMenu popupMenu;
+    private JMenuItem deleteMenuItem;
+    private JMenuItem unselectMenuItem;
 
     public PatientTable(List<Patient> patients) {
         String[] columnNames = {"First Name", "Last Name", "Date of birth", "Gender", "Address", "Phone", "Email"};
@@ -25,6 +35,26 @@ public class PatientTable extends JPanel {
             }
         };
         table = new JTable(tableModel);
+
+        // Initialize the popup menu
+        popupMenu = new JPopupMenu();
+        deleteMenuItem = new JMenuItem("Delete Patient");
+        unselectMenuItem = new JMenuItem("Unselect Patient");
+        popupMenu.add(deleteMenuItem);
+        popupMenu.add(unselectMenuItem);
+
+        // Add a mouse listener to show the popup menu on right-click
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (SwingUtilities.isRightMouseButton(e)) {
+                    int row = table.rowAtPoint(e.getPoint());
+                    table.getSelectionModel().setSelectionInterval(row, row);
+
+                    popupMenu.show(table, e.getX(), e.getY());
+                }
+            }
+        });
 
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -63,5 +93,15 @@ public class PatientTable extends JPanel {
     // Add this method to unselect the patient
     public void clearSelection() {
         table.clearSelection();
+    }
+
+    // Add this method to add a listener for the delete menu item
+    public void addDeleteMenuItemListener(ActionListener listener) {
+        deleteMenuItem.addActionListener(listener);
+    }
+
+    // Add this method to add a listener for the unselect menu item
+    public void addUnselectMenuItemListener(ActionListener listener) {
+        unselectMenuItem.addActionListener(listener);
     }
 }
