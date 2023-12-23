@@ -1,0 +1,13 @@
+:root {
+  --main-background-color: #a5dbdd;
+  --main-button-color: #407c87;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
+html,body {
+  height: 100%;
+  width: 100%;
+}
