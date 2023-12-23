@@ -21,5 +21,11 @@ public class PrescriptionService {
         return prescriptionRepository.findAll();
     }
 
-    // Add more methods as needed for prescription operations
+    public boolean checkPrescriptionExistence(String prescriptionId) {
+        return prescriptionRepository.existsByPrescriptionId(prescriptionId);
+    }
+
+    public Prescription getPrescriptionById(String prescriptionId) {
+        return prescriptionRepository.findById(prescriptionId).orElse(null);
+    }
 }

@@ -18,14 +18,14 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long doctor_id;
 
-    @Column(name = "first_name")
-    String first_name;
+    @Column(name = "firstName")
+    String firstName;
 
-    @Column(name = "last_name")
-    String last_name;
+    @Column(name = "lastName")
+    String lastName;
 
-    @Column(name = "phone_number")
-    String phone_number;
+    @Column(name = "phoneNumber")
+    String phoneNumber;
 
     @Column(name = "email")
     String email;

@@ -19,10 +19,10 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long patient_id;
 
-    @Column(name = "first_name")
+    @Column(name = "firstName")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "lastName")
     private String lastName;
 
     @Column(name = "date_of_birth")
@@ -35,7 +35,7 @@ public class Patient {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "phone_number")
+    @Column(name = "phoneNumber")
     private String phoneNumber;
 
     @Column(name = "email")
@@ -44,6 +44,4 @@ public class Patient {
     @JsonIgnore
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Prescription> prescriptions;
-
-
 }

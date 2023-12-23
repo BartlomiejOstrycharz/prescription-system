@@ -1,7 +1,9 @@
 package com.prescription.backend.Service;
 
 import com.prescription.backend.Model.Patient;
+import com.prescription.backend.Model.Prescription;
 import com.prescription.backend.Repository.PatientRepository;
+import com.prescription.backend.Repository.PrescriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,12 @@ import java.util.Optional;
 public class PatientService {
 
     private final PatientRepository patientRepository;
+    private final PrescriptionRepository prescriptionRepository;
 
     @Autowired
-    public PatientService(PatientRepository patientRepository) {
+    public PatientService(PatientRepository patientRepository, PrescriptionRepository prescriptionRepository) {
         this.patientRepository = patientRepository;
+        this.prescriptionRepository = prescriptionRepository;
     }
 
     public List<Patient> getAllPatients() {
@@ -29,5 +33,9 @@ public class PatientService {
 
     public void deletePatient(Long patientId) {
         patientRepository.deleteById(patientId);
+    }
+
+    public Optional<Patient> getPatientByPrescriptionId(String prescriptionId) {
+        return prescriptionRepository.findByPrescriptionId(prescriptionId).map(Prescription::getPatient);
     }
 }
