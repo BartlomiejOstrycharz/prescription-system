@@ -15,7 +15,7 @@ import java.util.Date;
 public class Prescription {
 
     @Id
-    @Column(name = "prescription_id", unique = true)
+    @Column(name = "prescription_id")
     private String prescriptionId;
 
     @ManyToOne
