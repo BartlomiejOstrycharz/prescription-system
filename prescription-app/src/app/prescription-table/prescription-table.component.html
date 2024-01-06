@@ -1,45 +1,44 @@
-<span *ngIf="prescription">
+<span *ngIf="prescription && prescription.length > 0">
   <div class="patient-info-container">
     <div class="row">
-      <div class="col"><span class="patient-info-span">Last name: {{ prescription.patient.lastName }}</span></div>
-      <div class="col"><span class="patient-info-span">Name: {{ prescription.patient.firstName }}</span></div>
-      <div class="col"><span class="patient-info-span">Birth date:  {{ prescription.patient.dateOfBirth | date:'shortDate' }}</span></div>
+      <div class="col"><span class="patient-info-span">Last name: {{ prescription[0].patient.lastName }}</span></div>
+      <div class="col"><span class="patient-info-span">Name: {{ prescription[0].patient.firstName }}</span></div>
+      <div class="col"><span class="patient-info-span">Birth date:  {{ prescription[0].patient.dateOfBirth | date:'shortDate' }}</span></div>
     </div>
     <div class="row">
-      <div class="col"><span class="patient-info-span">PESEL number: {{ prescription.patient.pesel }}</span></div>
-      <div class="col"><span class="patient-info-span">Address: {{ prescription.patient.address }}</span></div>
-      <div class="col"><span class="patient-info-span">Phone number: {{ prescription.patient.phoneNumber }}</span></div>
+      <div class="col"><span class="patient-info-span">PESEL number: {{ prescription[0].patient.pesel }}</span></div>
+      <div class="col"><span class="patient-info-span">Address: {{ prescription[0].patient.address }}</span></div>
+      <div class="col"><span class="patient-info-span">Phone number: {{ prescription[0].patient.phoneNumber }}</span></div>
     </div>
     <div class="row">
-      <div class="col"><span class="patient-info-span">E-mail: {{ prescription.patient.email }}</span></div>
+      <div class="col"><span class="patient-info-span">E-mail: {{ prescription[0].patient.email }}</span></div>
     </div>
   </div>
 
-<div class="table-container d-flex justify-content-center align-items-start">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Medication name</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Volume</th>
-        <th scope="col">Instructions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>{{ prescription.medication.medicationName }}</td>
-        <td>{{ prescription.quantity }}</td>
-        <td>{{ prescription.medication.volume }}</td>
-        <td>{{ prescription.instructions }}</td>
+  <div class="table-container d-flex justify-content-center align-items-start">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Medication name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Volume</th>
+          <th scope="col">Instructions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let presc of prescription; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ presc.medication.medicationName }}</td>
+          <td>{{ presc.quantity }}</td>
+          <td>{{ presc.medication.volume }}</td>
+          <td>{{ presc.instructions }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="button-container d-flex justify-content-end">
-  <button id="print-button">Print to pdf</button>
-</div>
+  <div class="button-container d-flex justify-content-end">
+    <button id="print-button">Print to pdf</button>
+  </div>
 </span>

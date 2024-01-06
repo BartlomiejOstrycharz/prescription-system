@@ -16,7 +16,11 @@ export class InputButtonComponent {
 
   prescriptionId: string = '';
 
-  constructor(private prescriptionService: PrescriptionService, private patientService: PatientService, private router: Router) {}
+  constructor(
+    private prescriptionService: PrescriptionService,
+    private patientService: PatientService,
+    private router: Router
+  ) {}
 
   public clearInput() {
     this.prescriptionId = '';
@@ -27,8 +31,7 @@ export class InputButtonComponent {
       (response) => {
         if (response) {
           this.prescriptionNumberEntered.emit(this.prescriptionId); // Emit the event
-          const path = `/prescription-table/${this.prescriptionId}`;
-          this.router.navigate([path]);
+          this.navigateToPrescriptionTable(this.prescriptionId);
         } else {
           alert('Prescription does not exist');
         }
@@ -41,13 +44,17 @@ export class InputButtonComponent {
     this.clearInput();
   }
 
+  private navigateToPrescriptionTable(prescriptionId: string) {
+    const path = `/prescription-table/${prescriptionId}`;
+    this.router.navigate([path]);
+  }
 
   checkPrescription() {
     this.prescriptionService.checkPrescriptionExistence(this.prescriptionId).subscribe(
       (exists: boolean) => {
         if (exists) {
           // Prescription exists, navigate to the prescription table component
-          this.router.navigate(['/prescription-table', this.prescriptionId]);
+          this.navigateToPrescriptionTable(this.prescriptionId);
         } else {
           // Prescription does not exist, handle accordingly (display error message, etc.)
           console.log('Prescription does not exist');
@@ -58,5 +65,4 @@ export class InputButtonComponent {
       }
     );
   }
-
 }

@@ -15,8 +15,9 @@ export class PrescriptionService {
     return this.http.get<boolean>(url);
   }
 
-  getPrescriptionById(prescriptionId: string): Observable<any> {
+  getPrescriptionsById(prescriptionId: string): Observable<any> {
     const url = `${this.apiURL}/${prescriptionId}`;
     return this.http.get<any>(url);
   }
 }
+

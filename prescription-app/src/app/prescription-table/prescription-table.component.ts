@@ -1,11 +1,9 @@
 // prescription-table.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { PrescriptionService } from '../service/prescription/prescription.service';
 import { CommonModule } from '@angular/common';
 import { Prescription } from '../model/Prescription';
-import { Medication } from '../model/Medication';
 
 @Component({
   selector: 'app-prescription-table',
@@ -16,25 +14,22 @@ import { Medication } from '../model/Medication';
 })
 export class PrescriptionTableComponent implements OnInit {
   prescriptionId: any;
-  prescription!: Prescription;
+  prescription: Prescription[] | undefined; // Change the type to Prescription[] | undefined
 
   constructor(
     private route: ActivatedRoute,
     private prescriptionService: PrescriptionService
-  ) {}
+  ) {
+    this.prescription = undefined; // Initialize with undefined in the constructor
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.prescriptionId = params['prescriptionId'];
-      this.prescriptionService.getPrescriptionById(this.prescriptionId).subscribe(
-        (data: any) => {
+      this.prescriptionService.getPrescriptionsById(this.prescriptionId).subscribe(
+        (data: Prescription[]) => {
           this.prescription = data;
-
-          if (this.prescription && this.prescription.medication) {
-            console.log(this.prescription);
-          } else {
-            console.error('Prescription or medication is undefined.');
-          }
+          console.log(this.prescription);
         },
         (error: any) => {
           console.error('Error fetching prescription details: ', error);
@@ -42,7 +37,4 @@ export class PrescriptionTableComponent implements OnInit {
       );
     });
   }
-
-
-
 }
