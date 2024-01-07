@@ -26,6 +26,7 @@ public class TableScreen extends JFrame {
         patientTable = new PatientTable(patients);
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Prescriptions App");
         setLocationRelativeTo(null);
 
         JMenuBar menuBar = new JMenuBar();
