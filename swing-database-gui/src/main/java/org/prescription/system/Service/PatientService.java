@@ -32,7 +32,6 @@ public class PatientService {
             return Collections.emptyList();
         }
     }
-
     private boolean patientMatchesSearch(Patient patient, String searchTerm) {
         // Replace this with your actual search logic
         // For simplicity, searching across all patient attributes

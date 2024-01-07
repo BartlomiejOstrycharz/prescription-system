@@ -11,14 +11,13 @@ public class LoginService {
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("http://localhost:8080/login");
         try {
-            // Dane logowania w formie JSON
+
             String json = "{\"email\":\"" + email + "\", \"password\":\"" + password + "\"}";
             StringEntity entity = new StringEntity(json);
             httpPost.setEntity(entity);
             httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json");
 
-            // Sending request and receiving response
             HttpResponse response = httpClient.execute(httpPost);
             int statusCode = response.getStatusLine().getStatusCode();
             return statusCode == 200;

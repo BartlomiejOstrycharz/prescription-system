@@ -24,7 +24,6 @@ public class DeletePatientService {
             System.out.println("HTTP Response Body: " + response.body());
         } catch (Exception ex) {
             ex.printStackTrace();
-            // Handle exceptions or log errors as needed
         }
     }
 }

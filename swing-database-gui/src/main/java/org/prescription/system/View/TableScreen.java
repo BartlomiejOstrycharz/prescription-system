@@ -1,10 +1,13 @@
 package org.prescription.system.View;
 
+import org.prescription.system.Model.Gender;
+import org.prescription.system.Service.AddPatient;
 import org.prescription.system.Service.DeletePatientService;
 import org.prescription.system.Model.Patient;
 import org.prescription.system.Service.PatientService;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +20,10 @@ public class TableScreen extends JFrame {
     private final SearchPanel searchPanel;
 
     public TableScreen(PatientService patientService) {
+        // Fetch initial data from the backend
+        List<Patient> patients = patientService.fetchPatientDataFromBackend();
+        // Create the patient table
+        patientTable = new PatientTable(patients);
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -48,6 +55,14 @@ public class TableScreen extends JFrame {
             dialog.add(author_number_two);
             dialog.setVisible(true);
         });
+        JMenuItem addPatient = new JMenuItem("Add Patient");
+        addPatient.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
+
+        addPatient.addActionListener(e -> {
+            NewPatient newPatient = new NewPatient(this);
+            List<Patient> updatedPatients = patientService.fetchPatientDataFromBackend();
+            patientTable.updateTable(updatedPatients);
+        });
 
         fileMenu.add(exitItem);
         menuBar.add(fileMenu);
@@ -58,6 +73,7 @@ public class TableScreen extends JFrame {
         editMenu.add(deletePatient);
         editMenu.add(unselectItem);
         editMenu.add(addDoctor);
+        editMenu.add(addPatient);
         addDoctor.setEnabled(false);
 
         // Create search panel
@@ -79,12 +95,6 @@ public class TableScreen extends JFrame {
         JPanel searchBarPanel = new JPanel(new BorderLayout());
         searchBarPanel.add(searchPanel, BorderLayout.CENTER);
         searchBarPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        // Fetch initial data from the backend
-        List<Patient> patients = patientService.fetchPatientDataFromBackend();
-
-        // Create the patient table
-        patientTable = new PatientTable(patients);
 
         // Add the search bar panel and patient table to the main content pane
         getContentPane().add(searchBarPanel, BorderLayout.NORTH);

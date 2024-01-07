@@ -9,7 +9,6 @@ public class Patient {
     private String phoneNumber;
     private String email;
 
-    // Getter and Setter for patient_id
     public Long getPatient_id() {
         return patient_id;
     }
@@ -18,7 +17,6 @@ public class Patient {
         this.patient_id = patient_id;
     }
 
-    // Getter and Setter for firstName
     public String getFirstName() {
         return firstName;
     }
@@ -27,7 +25,6 @@ public class Patient {
         this.firstName = firstName;
     }
 
-    // Getter and Setter for lastName
     public String getLastName() {
         return lastName;
     }
@@ -36,47 +33,37 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    // Getter and Setter for dateOfBirth
     public String getDateOfBirth() {
         return dateOfBirth;
     }
-
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    // Getter and Setter for gender
     public Gender getGender() {
         return gender;
     }
-
     public void setGender(Gender gender) {
         this.gender = gender;
     }
 
-    // Getter and Setter for address
     public String getAddress() {
         return address;
     }
-
     public void setAddress(String address) {
         this.address = address;
     }
 
-    // Getter and Setter for phoneNumber
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    // Getter and Setter for email
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }

@@ -6,11 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FooterPanel extends JPanel {
-
-    //obiekt klasy JLabel wyświetlająca aktualną datę i godzinę
     private final JLabel dateTimeLabel;
 
-    //Inicjalizacja układu FlowLayout oraz tworzenie etykiety
+
     public FooterPanel() {
         setLayout(new FlowLayout(FlowLayout.CENTER));
         dateTimeLabel = new JLabel();
