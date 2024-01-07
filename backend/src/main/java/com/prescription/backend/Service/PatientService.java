@@ -40,4 +40,8 @@ public class PatientService {
         return prescriptions.stream().findFirst().map(Prescription::getPatient);
     }
 
+    public void savePatient(Patient patient) {
+        patientRepository.save(patient);
+    }
+
 }
