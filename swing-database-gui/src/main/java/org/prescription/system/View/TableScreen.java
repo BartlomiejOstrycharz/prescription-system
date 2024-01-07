@@ -31,8 +31,8 @@ public class TableScreen extends JFrame {
 
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
-        JMenu helpMenu = new JMenu("Help");
         JMenu editMenu = new JMenu("Edit");
+        JMenu helpMenu = new JMenu("Help");
         JMenuItem exitItem = new JMenuItem("Exit");
         JMenuItem deletePatient = new JMenuItem("Delete selected patient");
         JMenuItem unselectItem = new JMenuItem("Unselect Patient");
@@ -67,8 +67,6 @@ public class TableScreen extends JFrame {
 
         fileMenu.add(exitItem);
         menuBar.add(fileMenu);
-        helpMenu.add(aboutItem);
-        menuBar.add(helpMenu);
         setJMenuBar(menuBar);
         menuBar.add(editMenu);
         editMenu.add(deletePatient);
@@ -76,6 +74,9 @@ public class TableScreen extends JFrame {
         editMenu.add(addDoctor);
         editMenu.add(addPatient);
         addDoctor.setEnabled(false);
+        helpMenu.add(aboutItem);
+        menuBar.add(helpMenu);
+
 
         // Create search panel
         searchPanel = new SearchPanel(new ActionListener() {
