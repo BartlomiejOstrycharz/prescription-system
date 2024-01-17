@@ -3,6 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { PatientService } from '../service/patient/patient.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-input-button',
@@ -19,18 +20,26 @@ export class InputButtonComponent {
   constructor(
     private prescriptionService: PrescriptionService,
     private patientService: PatientService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   public clearInput() {
     this.prescriptionId = '';
   }
 
+  public invalidPrescriptionNumber() {
+    const config = new MatSnackBarConfig();
+    config.verticalPosition = "top";
+    this.snackBar.open("Invalid prescription number!", "Close", config);
+    this.clearInput();
+  }
+
   public sendPrescriptionNumber() {
     this.patientService.validatePrescriptionNumber(this.prescriptionId).subscribe(
       (response) => {
         if (response) {
-          this.prescriptionNumberEntered.emit(this.prescriptionId); // Emit the event
+          this.prescriptionNumberEntered.emit(this.prescriptionId);
           this.navigateToPrescriptionTable(this.prescriptionId);
         } else {
           alert('Prescription does not exist');
@@ -49,15 +58,14 @@ export class InputButtonComponent {
     this.router.navigate([path]);
   }
 
-  checkPrescription() {
+  public checkPrescription() {
     this.prescriptionService.checkPrescriptionExistence(this.prescriptionId).subscribe(
       (exists: boolean) => {
         if (exists) {
           // Prescription exists, navigate to the prescription table component
           this.navigateToPrescriptionTable(this.prescriptionId);
         } else {
-          // Prescription does not exist, handle accordingly (display error message, etc.)
-          console.log('Prescription does not exist');
+          this.invalidPrescriptionNumber();
         }
       },
       (error: any) => {
@@ -65,4 +73,7 @@ export class InputButtonComponent {
       }
     );
   }
+
+
+
 }
