@@ -20,28 +20,27 @@ public class PrescriptionController {
     @Autowired
     private PatientService patientService;
 
-    @GetMapping("/exists/{prescriptionId}")
-    public ResponseEntity<Boolean> checkPrescriptionExistence(@PathVariable String prescriptionId) {
-        boolean exists = prescriptionService.checkPrescriptionExistence(prescriptionId);
+    @GetMapping("/exists/{prescriptionName}")
+    public ResponseEntity<Boolean> checkPrescriptionExistence(@PathVariable String prescriptionName) {
+        boolean exists = prescriptionService.checkPrescriptionExistence(prescriptionName);
         return new ResponseEntity<>(exists, HttpStatus.OK);
     }
 
-    @GetMapping("/{prescriptionId}")
-    public ResponseEntity<List<Prescription>> getAllPrescriptionsByPrescriptionId(@PathVariable String prescriptionId) {
-        List<Prescription> prescriptions = prescriptionService.getAllPrescriptionsByPrescriptionId(prescriptionId);
+    @GetMapping("/{prescriptionName}")
+    public ResponseEntity<List<Prescription>> getAllPrescriptionsByPrescriptionName(@PathVariable String prescriptionName) {
+        List<Prescription> prescriptions = prescriptionService.getAllPrescriptionsByPrescriptionName(prescriptionName);
         if (!prescriptions.isEmpty()) {
+            System.out.println("Prescriptions for prescriptionId " + prescriptionName + ": " + prescriptions);
+
             return new ResponseEntity<>(prescriptions, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-
-
-
-    @GetMapping("/{prescriptionId}/patient")
-    public ResponseEntity<?> getPatientByPrescriptionId(@PathVariable String prescriptionId) {
-        return patientService.getPatientByPrescriptionId(prescriptionId)
+    @GetMapping("/{prescriptionName}/patient")
+    public ResponseEntity<?> getPatientByPrescriptionName(@PathVariable String prescriptionName) {
+        return patientService.getPatientByPrescriptionId(prescriptionName)
                 .map(patient -> new ResponseEntity<>(patient, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

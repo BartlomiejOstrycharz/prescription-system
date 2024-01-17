@@ -36,7 +36,7 @@ public class PatientService {
     }
 
     public Optional<Patient> getPatientByPrescriptionId(String prescriptionId) {
-        List<Prescription> prescriptions = prescriptionRepository.findByPrescriptionId(prescriptionId);
+        List<Prescription> prescriptions = prescriptionRepository.findAllByPrescriptionName(prescriptionId);
         return prescriptions.stream().findFirst().map(Prescription::getPatient);
     }
 

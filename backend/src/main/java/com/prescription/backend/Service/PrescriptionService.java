@@ -17,11 +17,11 @@ public class PrescriptionService {
         this.prescriptionRepository = prescriptionRepository;
     }
 
-    public List<Prescription> getAllPrescriptionsByPrescriptionId(String prescriptionId) {
-        return prescriptionRepository.findAllByPrescriptionId(prescriptionId);
+    public List<Prescription> getAllPrescriptionsByPrescriptionName(String prescriptionName) {
+        return prescriptionRepository.findAllByPrescriptionName(prescriptionName);
     }
 
-    public boolean checkPrescriptionExistence(String prescriptionId) {
-        return prescriptionRepository.existsByPrescriptionId(prescriptionId);
+    public boolean checkPrescriptionExistence(String prescriptionName) {
+        return prescriptionRepository.existsByPrescriptionName(prescriptionName);
     }
 }

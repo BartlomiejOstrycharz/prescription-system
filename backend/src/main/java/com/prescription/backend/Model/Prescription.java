@@ -15,8 +15,13 @@ import java.util.Date;
 public class Prescription {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "prescription_id")
-    private String prescriptionId;
+    private Long prescriptionID; // Surrogate primary key
+
+
+    @Column(name = "prescription_name")
+    private String prescriptionName;
 
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
