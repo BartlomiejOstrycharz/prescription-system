@@ -10,13 +10,13 @@ export class PrescriptionService {
 
   constructor(private http: HttpClient) { }
 
-  checkPrescriptionExistence(prescriptionId: string): Observable<boolean> {
-    const url = `${this.apiURL}/exists/${prescriptionId}`;
+  checkPrescriptionExistence(prescriptionName: string): Observable<boolean> {
+    const url = `${this.apiURL}/exists/${prescriptionName}`;
     return this.http.get<boolean>(url);
   }
 
-  getPrescriptionsById(prescriptionId: string): Observable<any> {
-    const url = `${this.apiURL}/${prescriptionId}`;
+  getPrescriptionsById(prescriptionName: string): Observable<any> {
+    const url = `${this.apiURL}/${prescriptionName}`;
     return this.http.get<any>(url);
   }
 }

@@ -19,9 +19,9 @@ export class PatientService {
     );
   }
 
-  getPatientByPrescriptionId(prescriptionId: string): Observable<Patient> {
+  getPatientByPrescriptionId(prescriptionName: string): Observable<Patient> {
     return this.httpClient.get<Patient>(
-      `${this.apiURL}/patients/byPrescription/${prescriptionId}`
+      `${this.apiURL}/patients/byPrescription/${prescriptionName}`
     );
   }
 }

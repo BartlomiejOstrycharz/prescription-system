@@ -1,5 +1,4 @@
 .patient-info-container {
-  border: green 1px solid;
   height: 30%;
   margin: 8px 0 0 0;
 }
@@ -16,7 +15,6 @@
 
 
 .table-container {
-  border: red 1px solid;
   height: 70%;
   margin: 8px 0px 0 0;
 }
@@ -35,7 +33,6 @@ th {
 }
 
 .button-container {
-  border: rgb(19, 101, 224) 1px solid;
   margin: 8px 0 0 0;
 }
 
