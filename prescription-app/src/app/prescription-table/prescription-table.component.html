@@ -1,4 +1,4 @@
-<span *ngIf="prescription && prescription.length > 0">
+<span *ngIf="prescription && prescription.length > 0" id="print-content">
   <div class="patient-info-container">
     <div class="row">
       <div class="col"><span class="patient-info-span"><b>Last name:</b> {{ prescription[0].patient.lastName }}</span></div>
@@ -38,7 +38,7 @@
     </table>
   </div>
 
-  <div class="button-container d-flex justify-content-end">
-    <button id="print-button">Print to pdf</button>
+  <div class="button-container d-flex justify-content-end exclude-from-pdf">
+    <button id="print-button" (click)="generatePDF()">Print to pdf</button>
   </div>
 </span>
