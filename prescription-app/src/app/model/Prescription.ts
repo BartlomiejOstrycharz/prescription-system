@@ -4,7 +4,8 @@ import { Medication } from "./Medication";
 import { Patient } from "./Patient";
 
 export interface Prescription {
-  prescriptionId: string;
+  prescriptionID: number;
+  prescriptionName: string;
   patient: Patient;
   doctor: Doctor;
   prescriptionDate: string;

@@ -31,6 +31,7 @@ export class InputButtonComponent {
   public invalidPrescriptionNumber() {
     const config = new MatSnackBarConfig();
     config.verticalPosition = "top";
+    config.duration = 3000;
     this.snackBar.open("Invalid prescription number!", "Close", config);
     this.clearInput();
   }
