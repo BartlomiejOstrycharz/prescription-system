@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PrescriptionService {
@@ -23,5 +24,9 @@ public class PrescriptionService {
 
     public boolean checkPrescriptionExistence(String prescriptionName) {
         return prescriptionRepository.existsByPrescriptionName(prescriptionName);
+    }
+
+    public void deletePrescriptionByPrescriptionId(Long prescriptionId) {
+        prescriptionRepository.deleteById(prescriptionId);
     }
 }

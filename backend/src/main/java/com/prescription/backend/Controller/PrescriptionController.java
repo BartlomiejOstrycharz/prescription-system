@@ -1,5 +1,6 @@
 package com.prescription.backend.Controller;
 
+import com.prescription.backend.Model.Patient;
 import com.prescription.backend.Model.Prescription;
 import com.prescription.backend.Service.PrescriptionService;
 import com.prescription.backend.Service.PatientService;
@@ -30,8 +31,6 @@ public class PrescriptionController {
     public ResponseEntity<List<Prescription>> getAllPrescriptionsByPrescriptionName(@PathVariable String prescriptionName) {
         List<Prescription> prescriptions = prescriptionService.getAllPrescriptionsByPrescriptionName(prescriptionName);
         if (!prescriptions.isEmpty()) {
-            System.out.println("Prescriptions for prescriptionId " + prescriptionName + ": " + prescriptions);
-
             return new ResponseEntity<>(prescriptions, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -39,9 +38,19 @@ public class PrescriptionController {
     }
 
     @GetMapping("/{prescriptionName}/patient")
-    public ResponseEntity<?> getPatientByPrescriptionName(@PathVariable String prescriptionName) {
+    public ResponseEntity<Patient> getPatientByPrescriptionName(@PathVariable String prescriptionName) {
         return patientService.getPatientByPrescriptionId(prescriptionName)
                 .map(patient -> new ResponseEntity<>(patient, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @DeleteMapping("/delete/{prescriptionId}")
+    public ResponseEntity<Void> deletePrescriptionByPrescriptionId(@PathVariable Long prescriptionId){
+        try {
+            prescriptionService.deletePrescriptionByPrescriptionId(prescriptionId);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
