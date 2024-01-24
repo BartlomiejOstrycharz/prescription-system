@@ -1,6 +1,5 @@
 import { PrescriptionService } from './../service/prescription/prescription.service';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { PatientService } from '../service/patient/patient.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
@@ -19,7 +18,6 @@ export class InputButtonComponent {
 
   constructor(
     private prescriptionService: PrescriptionService,
-    private patientService: PatientService,
     private router: Router,
     private snackBar: MatSnackBar
   ) {}
@@ -36,24 +34,6 @@ export class InputButtonComponent {
     this.clearInput();
   }
 
-  public sendPrescriptionNumber() {
-    this.patientService.validatePrescriptionNumber(this.prescriptionId).subscribe(
-      (response) => {
-        if (response) {
-          this.prescriptionNumberEntered.emit(this.prescriptionId);
-          this.navigateToPrescriptionTable(this.prescriptionId);
-        } else {
-          alert('Prescription does not exist');
-        }
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-    this.clearInput();
-  }
-
   private navigateToPrescriptionTable(prescriptionId: string) {
     const path = `/prescription-table/${prescriptionId}`;
     this.router.navigate([path]);
@@ -63,7 +43,6 @@ export class InputButtonComponent {
     this.prescriptionService.checkPrescriptionExistence(this.prescriptionId).subscribe(
       (exists: boolean) => {
         if (exists) {
-          // Prescription exists, navigate to the prescription table component
           this.navigateToPrescriptionTable(this.prescriptionId);
         } else {
           this.invalidPrescriptionNumber();
@@ -74,7 +53,4 @@ export class InputButtonComponent {
       }
     );
   }
-
-
-
 }
