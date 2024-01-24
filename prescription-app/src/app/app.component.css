@@ -1,0 +1,10 @@
+.nav-container {
+  position: sticky;
+  display: block;
+  height: 10%;
+}
+
+.middle-container {
+  display: block;
+  height: 80%;
+}

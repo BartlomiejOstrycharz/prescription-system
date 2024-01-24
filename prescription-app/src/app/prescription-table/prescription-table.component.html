@@ -1,0 +1,44 @@
+<span *ngIf="prescription && prescription.length > 0" id="print-content">
+  <div class="patient-info-container">
+    <div class="row">
+      <div class="col"><span class="patient-info-span"><b>Last name:</b> {{ prescription[0].patient.lastName }}</span></div>
+      <div class="col"><span class="patient-info-span"><b>Name:</b> {{ prescription[0].patient.firstName }}</span></div>
+      <div class="col"><span class="patient-info-span"><b>Birth date:</b> {{ prescription[0].patient.dateOfBirth | date:'shortDate' }}</span></div>
+    </div>
+    <div class="row">
+      <div class="col"><span class="patient-info-span"><b>PESEL number:</b> {{ prescription[0].patient.pesel }}</span></div>
+      <div class="col"><span class="patient-info-span"><b>Address:</b> {{ prescription[0].patient.address }}</span></div>
+      <div class="col"><span class="patient-info-span"><b>Phone number:</b> {{ prescription[0].patient.phoneNumber }}</span></div>
+    </div>
+    <div class="row">
+      <div class="col"><span class="patient-info-span"><b>E-mail:</b> {{ prescription[0].patient.email }}</span></div>
+    </div>
+  </div>
+
+  <div class="table-container d-flex justify-content-center align-items-start">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Medication name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Volume</th>
+          <th scope="col">Instructions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let presc of prescription; let i = index">
+          <td> <button class="item-button" (click)="deletePrescription(presc.prescriptionID)">X</button> {{ i + 1 }}.</td>
+          <td>{{ presc.medication.medicationName }}</td>
+          <td>{{ presc.quantity }}</td>
+          <td>{{ presc.medication.volume }}</td>
+          <td>{{ presc.instructions }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="button-container d-flex justify-content-end exclude-from-pdf">
+    <button id="print-button" (click)="generatePDF()">Print to pdf</button>
+  </div>
+</span>
