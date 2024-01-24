@@ -1,0 +1,3 @@
+db.url=jdbc:mysql://localhost:55555/project
+db.user=root
+db.password=
