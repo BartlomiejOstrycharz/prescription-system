@@ -1,2 +1,2 @@
 # prescription-system
-Business application programming group project
+"Business application programming" group project
